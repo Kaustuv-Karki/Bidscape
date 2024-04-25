@@ -5,8 +5,10 @@ import userRoutes from "./routes/user.route.js";
 import bidRoutes from "./routes/bids.route.js";
 import projectRoutes from "./routes/project.route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 dotenv.config();
 
 mongoose
@@ -14,9 +16,8 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-app.use(cookieParser());
-
 app.use(express.json());
+app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/bid", bidRoutes);
 app.use("/api/project", projectRoutes);
