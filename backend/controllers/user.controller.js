@@ -37,3 +37,16 @@ export const login = async (req, res, next) => {
     return next(errorHandler(500, error.message));
   }
 };
+
+export const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  const userExists = await User.findById(id);
+  if (!userExists) return next(errorHandler(404, "User not found"));
+  try {
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    return next(errorHandler(500, error.message));
+  }
+  next();
+};
