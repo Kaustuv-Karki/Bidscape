@@ -31,8 +31,12 @@ export const login = async (req, res, next) => {
       expiresIn: "1d",
     });
     res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 10),
+      })
       .status(200)
-      .json({ message: "User logged in successfully", validUser, token });
+      .json({ message: "Login Successful", validUser, token });
   } catch (error) {
     return next(errorHandler(500, error.message));
   }
@@ -49,4 +53,9 @@ export const deleteUser = async (req, res, next) => {
     return next(errorHandler(500, error.message));
   }
   next();
+};
+
+export const logout = async (req, res, next) => {
+  res.clearCookie("access_token");
+  res.status(200).json({ message: "Logout Successful" });
 };
