@@ -6,6 +6,9 @@ const bidSchema = new mongoose.Schema(
     bidderId: { type: String, required: true },
     projectId: { type: String, required: true },
     amount: { type: Number, required: true },
+    status: { type: String, default: "pending" },
+    coverLetter: { type: String, required: true },
+    clientId: { type: String, required: true },
   },
   { timestamps: true }
 );

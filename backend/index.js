@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import bidRoutes from "./routes/bids.route.js";
+import adminRoutes from "./routes/admin.route.js";
 import projectRoutes from "./routes/project.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/bid", bidRoutes);
 app.use("/api/project", projectRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");

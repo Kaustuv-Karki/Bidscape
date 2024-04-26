@@ -1,3 +1,4 @@
+import Bid from "../models/bids.model.js";
 import Project from "../models/project.model.js";
 import { errorHandler } from "../utils/errorHandler.js";
 
@@ -73,5 +74,15 @@ export const updateProject = async (req, res, next) => {
     }
   } catch (error) {
     return next(errorHandler(500, "Project not found"));
+  }
+};
+
+export const getBidsByProjectId = async (req, res, next) => {
+  const projectId = req.params.projectId;
+  try {
+    const bid = await Bid.find({ projectId: projectId });
+    res.status(200).json(bid);
+  } catch (error) {
+    return next(errorHandler(500, error.message));
   }
 };
