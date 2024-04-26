@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      setToken(data.token);
+      localStorage.setItem("token", data.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getToken = () => {
+    console.log(localStorage.getItem("token"));
+  };
+
+  console.log("Token", token);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <input
+          className="border border-black py-2 px-10"
+          type="text"
+          placeholder="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <input
+          className="border border-black py-2 px-10"
+          type="text"
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+          value={password}
+        />
+        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+          Submit
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </form>
+      <button onClick={getToken}>GET TOKEn</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

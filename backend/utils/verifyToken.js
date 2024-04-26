@@ -18,6 +18,13 @@ export const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
     console.log(req.user.id, req.params.id);
     if (req.user.id === req.params.id) next();
-    else next(errorHandler(403, "Forbidden"));
+    else next(errorHandler(403, "Forbidden Unauthorized"));
+  });
+};
+
+export const verifyTokenAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) next();
+    else next(errorHandler(403, "Only Admin can access this route"));
   });
 };

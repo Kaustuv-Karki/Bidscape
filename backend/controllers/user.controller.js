@@ -5,12 +5,13 @@ import { errorHandler } from "../utils/errorHandler.js";
 import User from "../models/user.model.js";
 
 export const register = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, isAdmin } = req.body;
   const hashPassword = await bcrypt.hash(password, 12);
   const newUser = new User({
     username,
     email,
     password: hashPassword,
+    isAdmin,
   });
   try {
     await newUser.save();
