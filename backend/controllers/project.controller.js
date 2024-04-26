@@ -34,3 +34,44 @@ export const getProjects = async (req, res, next) => {
     return next(errorHandler(500, error.message));
   }
 };
+
+export const getSpecificProject = async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const project = await Project.findById(id);
+    if (!project) return next(errorHandler(404, "Project not found"));
+    res.status(200).json(project);
+  } catch (error) {
+    return next(errorHandler(500, error.message));
+  }
+};
+
+export const updateProject = async (req, res, next) => {
+  const id = req.params.id;
+  console.log("This is the id", id);
+  try {
+    const project = await Project.findById(id);
+    if (!project) return next(errorHandler(404, "Project not found"));
+    if (project.userId !== req.user.id)
+      return next(
+        errorHandler(
+          403,
+          `You are not allowed to update this project userID ${project.userId} req.user.id ${req.user.id}`
+        )
+      );
+    try {
+      const updatedProject = await Project.findByIdAndUpdate(
+        id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatedProject);
+    } catch (error) {
+      return next(errorHandler(500, "Error occured"));
+    }
+  } catch (error) {
+    return next(errorHandler(500, "Project not found"));
+  }
+};

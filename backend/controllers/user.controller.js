@@ -64,3 +64,13 @@ export const logout = async (req, res, next) => {
   res.clearCookie("access_token");
   res.status(200).json({ message: "Logout Successful" });
 };
+
+export const getUserProfile = async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    const user = await User.findById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    return next(errorHandler(500, error.message));
+  }
+};
