@@ -24,6 +24,7 @@ export const verifyTokenAndAuthorization = (req, res, next) => {
 
 export const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
+    console.log("This is the user", req.user);
     if (req.user.isAdmin) next();
     else next(errorHandler(403, "Only Admin can access this route"));
   });

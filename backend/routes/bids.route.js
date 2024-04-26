@@ -7,6 +7,6 @@ import { postBids } from "../controllers/bids.controller.js";
 
 const router = express.Router();
 
-router.post("/create", verifyToken, postBids);
+// router.get("/get", getProjects);
 
 export default router;
