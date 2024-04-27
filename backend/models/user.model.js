@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema(
       default:
         "https://res.cloudinary.com/dkkgmzpqd/image/upload/v1628580007/avatar/avatar_cugq40.png",
     },
+    passwordToken: { type: String },
+    passwordTokenExp: { type: Date },
   },
   { timestamps: true }
 );
