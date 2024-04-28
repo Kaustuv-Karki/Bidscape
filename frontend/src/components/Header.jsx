@@ -11,6 +11,8 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
   };
   return (
     <div className="w-full bg-white  items-center">
