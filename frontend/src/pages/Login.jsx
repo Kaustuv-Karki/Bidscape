@@ -45,6 +45,7 @@ const Login = () => {
             className="w-[300px] py-2 px-4 rounded-md bg-[#EFEEEC] outline-none"
             type="email"
             name="email"
+            value={formData.email}
             onChange={handleChange}
             placeholder="Enter email"
           />
@@ -57,6 +58,7 @@ const Login = () => {
             className="w-[300px] py-2 px-4 rounded-md bg-[#EFEEEC] outline-none"
             type="password"
             name="password"
+            value={formData.password}
             onChange={handleChange}
             placeholder="Enter Password"
           />

@@ -29,6 +29,11 @@ export const login = async (req, res, next) => {
     if (!validUser) return next(errorHandler(404, "User not found"));
     const validPassword = await bcrypt.compare(password, validUser.password);
     if (!validPassword) return next(errorHandler(400, "Invalid password"));
+    const userDetails = {
+      email: validUser.email,
+      username: validUser.username,
+      isAdmin: validUser.isAdmin,
+    };
     const token = jwt.sign(
       { id: validUser._id, isAdmin: validUser.isAdmin },
       process.env.JWT_SECRET,
@@ -42,7 +47,11 @@ export const login = async (req, res, next) => {
         expires: new Date(Date.now() + 24 * 60 * 60 * 10),
       })
       .status(200)
-      .json({ message: "Login Successful", validUser, token });
+      .json({
+        message: "Login Successful",
+        userDetails,
+        token,
+      });
   } catch (error) {
     return next(errorHandler(500, error.message));
   }
