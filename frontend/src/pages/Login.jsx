@@ -23,6 +23,7 @@ const Login = () => {
       const data = await response.json();
       const { userDetails, token } = data;
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(loginSuccess(userDetails));
     } catch (error) {
       console.log(error);

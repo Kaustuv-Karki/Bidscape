@@ -50,7 +50,7 @@ const Home = () => {
         <img className="max-w-[600px]" src={Bidding} alt="Bidding" />
       </div>
       <div className="mt-12">
-        <h1 className="text-[#D6482C] font-bold text-[2.5rem]">
+        <h1 className="text-[#D6482C] font-bold text-[2.5rem] text-center mb-12">
           Current Projects
         </h1>
         <div>

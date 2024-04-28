@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 /* 
 budget
@@ -43,10 +44,22 @@ _id
 */
 
 const ProjectCard = ({ projectDetails }) => {
-  const { title, description, budget, duration, skills, tags, images, email } =
-    projectDetails;
+  const navigate = useNavigate();
+  const {
+    title,
+    description,
+    budget,
+    duration,
+    skills,
+    tags,
+    images,
+    email,
+    _id,
+  } = projectDetails;
   return (
-    <div className="h-[450px] bg-white w-[320px] rounded-md cursor-pointer hover:shadow-lg transition-shadow py-4 px-4">
+    <div
+      onClick={() => navigate(`/project/${_id}`)}
+      className="h-[450px] bg-white w-[320px] rounded-md cursor-pointer hover:shadow-lg transition-shadow py-4 px-4">
       <p className="font-bold py-4 text-[1.2rem] text-center px-2 text-[#D6482C]">
         {title}
       </p>
