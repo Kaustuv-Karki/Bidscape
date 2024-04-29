@@ -27,7 +27,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(loginSuccess(userDetails));
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

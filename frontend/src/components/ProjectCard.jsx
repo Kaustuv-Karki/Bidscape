@@ -43,7 +43,7 @@ _id
 "662bed2012a6fefc4ef13d86"
 */
 
-const ProjectCard = ({ projectDetails }) => {
+const ProjectCard = ({ projectDetails, goTo = "/project/" }) => {
   const navigate = useNavigate();
   const {
     title,
@@ -58,7 +58,7 @@ const ProjectCard = ({ projectDetails }) => {
   } = projectDetails;
   return (
     <div
-      onClick={() => navigate(`/project/${_id}`)}
+      onClick={() => navigate(`${goTo}${_id}`)}
       className="h-[450px] bg-white w-[320px] rounded-md cursor-pointer hover:shadow-lg transition-shadow py-4 px-4">
       <p className="font-bold py-4 text-[1.2rem] text-center px-2 text-[#D6482C]">
         {title}

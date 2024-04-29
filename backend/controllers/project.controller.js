@@ -77,6 +77,16 @@ export const updateProject = async (req, res, next) => {
   }
 };
 
+export const getProjectByUser = async (req, res, next) => {
+  const userId = req.user.id;
+  try {
+    const project = await Project.find({ userId: userId });
+    res.status(200).json(project);
+  } catch (error) {
+    return next(errorHandler(500, error.message));
+  }
+};
+
 export const getBidsByProjectId = async (req, res, next) => {
   const projectId = req.params.projectId;
   try {

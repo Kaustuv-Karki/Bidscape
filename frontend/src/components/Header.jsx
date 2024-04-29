@@ -23,16 +23,25 @@ const Header = () => {
           Bidscape
         </h1>
         {user ? (
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <div>
-              <p className="text-[1.1rem] font-semibold">{user.username}</p>
+              <p className="text-[1.1rem] font-semibold">{user.username} </p>
               <p className="font-semibold text-gray-600">{user.email}</p>
             </div>
             <button
-              className="bg-red-600 text-white px-4 rounded-md"
+              className="bg-red-600 text-white px-4 rounded-md py-2"
               onClick={handleLogout}>
-              Logout
+              Log Out
             </button>
+            <div>
+              {user?.isAdmin && (
+                <span
+                  className="text-green-600 underline cursor-pointer"
+                  onClick={() => navigate("/admin/projects")}>
+                  Projects
+                </span>
+              )}
+            </div>
           </div>
         ) : (
           <div>

@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Header from "./components/Header";
 import ProjectPage from "./pages/ProjectPage";
+import AdminProjects from "./pages/AdminProjects";
+import AdminProjectBids from "./pages/AdminProjectBids";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/project/:id" element={<ProjectPage />} />
+        <Route path="/admin/projects" element={<AdminProjects />} />
+        <Route path="/admin/projectBids/:id" element={<AdminProjectBids />} />
       </Routes>
     </BrowserRouter>
   );

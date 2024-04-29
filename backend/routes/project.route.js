@@ -5,6 +5,7 @@ import {
   getSpecificProject,
   updateProject,
   getBidsByProjectId,
+  getProjectByUser,
 } from "../controllers/project.controller.js";
 import { verifyToken, verifyTokenAndAdmin } from "../utils/verifyToken.js";
 
@@ -15,5 +16,6 @@ router.get("/get", getProjects);
 router.get("/get/:id", getSpecificProject);
 router.put("/update/:id", verifyTokenAndAdmin, updateProject);
 router.get("/bid/:projectId", verifyToken, getBidsByProjectId);
+router.get("/projectByUser", verifyTokenAndAdmin, getProjectByUser);
 
 export default router;
