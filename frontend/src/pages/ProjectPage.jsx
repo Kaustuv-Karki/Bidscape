@@ -11,6 +11,7 @@ const ProjectPage = () => {
     email: "",
     amount: 0,
   });
+  const url = import.meta.env.VITE_BACKEND_URL;
 
   const handleChange = (e) => {
     setBidData({ ...bidData, [e.target.name]: e.target.value });
@@ -18,7 +19,7 @@ const ProjectPage = () => {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const response = await fetch(`/api/project/get/${id}`, {
+      const response = await fetch(`${url}/api/project/get/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +37,7 @@ const ProjectPage = () => {
     const token = localStorage.getItem("token");
     e.preventDefault();
     try {
-      const response = await fetch(`/api/bid/create/${id}`, {
+      const response = await fetch(`${url}/api/bid/create/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

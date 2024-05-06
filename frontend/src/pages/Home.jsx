@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_BACKEND_URL;
+  console.log("This is the url", url);
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch("/api/project/get", {
+      const response = await fetch(`${url}/api/project/get`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

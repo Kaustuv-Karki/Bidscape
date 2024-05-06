@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://bidscape-kaustuv-karkis-projects.vercel.app", // https://localhost:5000
-        secure: true,
+        target: "https://localhost:5000", // https://localhost:5000
+        secure: false,
       },
     },
   },

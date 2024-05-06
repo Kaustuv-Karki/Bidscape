@@ -7,13 +7,16 @@ const AdminProjectBids = () => {
   const [bids, setBids] = useState([]);
   const getBidsById = async () => {
     try {
-      const response = await fetch(`/api/project/bid/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/project/bid/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       const data = await response.json();
       setBids(data);
       console.log(data);

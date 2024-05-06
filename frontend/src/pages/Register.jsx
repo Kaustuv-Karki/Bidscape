@@ -10,6 +10,7 @@ const Register = () => {
   });
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const url = import.meta.env.VITE_BACKEND_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +19,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/user/register`, {
+      const response = await fetch(`${url}/api/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

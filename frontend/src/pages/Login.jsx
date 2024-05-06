@@ -6,7 +6,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
-
+  const url = import.meta.env.VITE_BACKEND_URL;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(loginStart());
-      const response = await fetch(`/api/user/login`, {
+      const response = await fetch(`${url}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
