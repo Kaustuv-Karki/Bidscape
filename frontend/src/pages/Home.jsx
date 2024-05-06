@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Bidding from "../assets/Bidding.svg";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../components/ProjectCard.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
