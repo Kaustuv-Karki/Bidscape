@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../components/ProjectCard.jsx";
+import { useSelector } from "react-redux";
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("/api/project/projectByUser", {
+        const response = await fetch(`/api/project/projectByUser`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

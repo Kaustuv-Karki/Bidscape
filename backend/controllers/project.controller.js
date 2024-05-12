@@ -79,6 +79,7 @@ export const updateProject = async (req, res, next) => {
 
 export const getProjectByUser = async (req, res, next) => {
   const userId = req.user.id;
+  console.log("This is the user id", userId);
   try {
     const project = await Project.find({ userId: userId });
     res.status(200).json(project);
