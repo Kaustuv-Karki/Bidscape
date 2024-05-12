@@ -33,7 +33,7 @@ const Login = () => {
     }
   };
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <div className="flex mx-auto w-[400px] h-[400px] bg-white flex-col items-center justify-center my-[10%] rounded-sm">

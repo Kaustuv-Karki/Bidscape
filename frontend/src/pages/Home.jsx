@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Bidding from "../assets/Bidding.svg";
 import ProjectCard from "../components/ProjectCard.jsx";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
   const url = import.meta.env.VITE_BACKEND_URL;
-  console.log("This is the url", url);
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   useEffect(() => {
     const fetchProjects = async () => {
       const response = await fetch(`${url}/api/project/get`, {
@@ -18,7 +21,7 @@ const Home = () => {
       });
       const data = await response.json();
       setProjects(data);
-      console.log(data);
+      // console.log(data);
     };
     fetchProjects();
   }, []);
@@ -36,18 +39,20 @@ const Home = () => {
             Discover seamless project management and talent acquisition on
             BidScape. Join our vibrant community today!
           </p>
-          <div className="flex gap-4">
-            <button
-              className="py-2 px-6 bg-[#D6482C] text-white font-semibold rounded-md"
-              onClick={() => navigate("/register")}>
-              Sign Up
-            </button>
-            <button
-              className="py-2 px-6 bg-white text-[#D6482C] font-semibold rounded-md"
-              onClick={() => navigate("/login")}>
-              Log In
-            </button>
-          </div>
+          {!user && (
+            <div className="flex gap-4">
+              <button
+                className="py-2 px-6 bg-[#D6482C] text-white font-semibold rounded-md"
+                onClick={() => navigate("/register")}>
+                Sign Up
+              </button>
+              <button
+                className="py-2 px-6 bg-white text-[#D6482C] font-semibold rounded-md"
+                onClick={() => navigate("/login")}>
+                Log In
+              </button>
+            </div>
+          )}
         </div>
         <img className="max-w-[600px]" src={Bidding} alt="Bidding" />
       </div>

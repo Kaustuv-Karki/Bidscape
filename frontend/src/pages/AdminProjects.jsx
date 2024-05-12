@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../components/ProjectCard.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../redux/user/userSlice.js";
 
 const AdminProjects = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     const fetchProjects = async () => {
@@ -14,9 +18,19 @@ const AdminProjects = () => {
             authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        if (response.status === 401) {
+          // console.log("True");
+          const data = await response.json();
+          if (data.message === "JWT expired") {
+            dispatch(logout());
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            navigate("/login");
+          }
+        }
         const data = await response.json();
         setProjects(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }

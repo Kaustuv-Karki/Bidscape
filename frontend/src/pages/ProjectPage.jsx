@@ -30,8 +30,8 @@ const ProjectPage = () => {
     };
     fetchProject();
   }, []);
-  console.log(id);
-  console.log("This is project data", project);
+  // console.log(id);
+  // console.log("This is project data", project);
 
   const handleSubmit = async (e) => {
     const token = localStorage.getItem("token");
@@ -46,7 +46,7 @@ const ProjectPage = () => {
         body: JSON.stringify(bidData),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }

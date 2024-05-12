@@ -34,7 +34,7 @@ const Register = () => {
     setFormData({ username: "", email: "", password: "" });
   };
 
-  console.log(formData, isAdmin);
+  // console.log(formData, isAdmin);
   return (
     <div className="flex mx-auto w-[400px] h-[550px] bg-white flex-col items-center justify-center my-[5%] rounded-sm">
       <h1 className="py-2 text-[2rem] font-semibold text-slate-700">
